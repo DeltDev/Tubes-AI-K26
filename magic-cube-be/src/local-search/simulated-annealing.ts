@@ -10,7 +10,11 @@ export class simulatedAnnealing{
         //IMPLEMENTASI FUNGSI PELUANG PINDAH DI SINI
         return null;
     }
-    public static search(): Array<MagicCubeClass> {
+    public static search(magicCube : MagicCubeClass): {
+        cubeStates: Array<MagicCubeClass>,
+        tValues: Array<number>,
+        probabilities: Array<number>
+    } {
         //IMPLEMENTASI ALGORITMA SIMULATED ANNEALING DI SINI
         //RETURNNYA HARUS ARRAY YANG ISINYA MAGIC CUBE CLASS
         return null;

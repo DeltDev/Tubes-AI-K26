@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus} from '@nestjs/common';
+import {Controller, Get, HttpStatus, Param} from '@nestjs/common';
 import {MagicCubeService} from "./magic-cube.service";
 
 @Controller('magic-cube')
@@ -43,23 +43,29 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcSteepestAscent();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
-    @Get('hill-climbing-sideways-move')
-    hcSidewaysMove(){
-        const results = this.magicCubeService.hcSidewaysMove();
-        return{
+    @Get('hill-climbing-sideways-move/:sidewaysMoveMax')
+    hcSidewaysMove(@Param('sidewaysMoveMax') sidewaysMoveMax: number) {
+        const results = this.magicCubeService.hcSidewaysMove(sidewaysMoveMax);
+        return {
             status: HttpStatus.OK,
-            results: results
-        }
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
+        };
     }
     @Get('hill-climbing-random-restart')
     hcRandomRestart(){
         const results = this.magicCubeService.hcRandomRestart();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
     @Get('hill-climbing-stochastic')
@@ -67,7 +73,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcStochastic();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
     @Get('simulated-annealing')
@@ -75,7 +83,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.simulatedAnnealing();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: results.tValues,
+            probabilities: results.probabilities,
+            cubeStates: results.cubeStates
         }
     }
     @Get('genetic-algortihm')
@@ -83,7 +93,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.geneticAlgortihm();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
 }

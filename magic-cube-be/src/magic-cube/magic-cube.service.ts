@@ -13,12 +13,13 @@ export class MagicCubeService {
 
     constructor() {
         this.magicCube = new MagicCubeClass();
+        this.getInitState();
+    }
+    getInitState() : void {
+        this.magicCube.setCurrentState(this.magicCube.getRandomInitState());
+        this.magicCube.setCurrentValue(this.magicCube.objectiveFunction(this.magicCube.getCurrentState()));
     }
     //service ini hanya untuk testing
-    // getInitState() : void {
-    //     this.magicCube.setCurrentState(this.magicCube.getRandomInitState());
-    //     this.magicCube.setCurrentValue(this.magicCube.objectiveFunction(this.magicCube.getCurrentState()));
-    // }
     // getStateValue() : number {
     //     return this.magicCube.getCurrentValue();
     // }
@@ -38,21 +39,25 @@ export class MagicCubeService {
     // }
 
     hcSteepestAscent(): Array<MagicCubeClass> {
-        return hcSteepestAscent.search();
+        return hcSteepestAscent.search(this.magicCube);
     }
-    hcSidewaysMove(): Array<MagicCubeClass> {
-        return hcSidewaysMove.search();
+    hcSidewaysMove(sidewaysMoveMax: number): Array<MagicCubeClass> {
+        return hcSidewaysMove.search(this.magicCube, sidewaysMoveMax);
     }
     hcRandomRestart(): Array<MagicCubeClass> {
-        return hcRandomRestart.search();
+        return hcRandomRestart.search(this.magicCube);
     }
     hcStochastic(): Array<MagicCubeClass> {
-        return hcStochastic.search();
+        return hcStochastic.search(this.magicCube);
     }
-    simulatedAnnealing(): Array<MagicCubeClass> {
-        return simulatedAnnealing.search();
+    simulatedAnnealing(): {
+        cubeStates: Array<MagicCubeClass>,
+        tValues: Array<number>,
+        probabilities: Array<number>
+    } {
+        return simulatedAnnealing.search(this.magicCube);
     }
     geneticAlgortihm(): Array<MagicCubeClass> {
-        return geneticAlgorithm.search();
+        return geneticAlgorithm.search(this.magicCube);
     }
 }
