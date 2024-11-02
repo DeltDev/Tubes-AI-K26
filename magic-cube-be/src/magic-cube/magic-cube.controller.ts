@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus} from '@nestjs/common';
+import {Controller, Get, HttpStatus, Param} from '@nestjs/common';
 import {MagicCubeService} from "./magic-cube.service";
 
 @Controller('magic-cube')
@@ -46,13 +46,13 @@ export class MagicCubeController {
             results: results
         }
     }
-    @Get('hill-climbing-sideways-move')
-    hcSidewaysMove(){
-        const results = this.magicCubeService.hcSidewaysMove();
-        return{
+    @Get('hill-climbing-sideways-move/:sidewaysMoveMax')
+    hcSidewaysMove(@Param('sidewaysMoveMax') sidewaysMoveMax: number) {
+        const results = this.magicCubeService.hcSidewaysMove(sidewaysMoveMax);
+        return {
             status: HttpStatus.OK,
             results: results
-        }
+        };
     }
     @Get('hill-climbing-random-restart')
     hcRandomRestart(){
