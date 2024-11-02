@@ -43,7 +43,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcSteepestAscent();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
     @Get('hill-climbing-sideways-move/:sidewaysMoveMax')
