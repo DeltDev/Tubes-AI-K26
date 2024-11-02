@@ -1,18 +1,23 @@
 export class MagicCubeClass {
     private cubeState: number[][][] = []; //representasi magic cube dalam bentuk array 3d
     private value: number; //nilai objective function dari magic cube saat ini
+    private sumConstraint: number;
     public getCurrentValue() : number{ //method mendapatkan objective function dari magic cube saat ini
         return this.value;
     }
     public getCurrentState(): number[][][]{ //method untuk mendapatkan state cube saat ini
         return this.cubeState;
     }
-    public setCurrentState(state: number[][][]):void{
+    public setCurrentState(state: number[][][]):void{ //set state magic cube
         this.cubeState = state;
+    }
+    public getSumConstraintVal(): number{
+        return this.sumConstraint;
     }
     constructor() { //konstruktor yang akan inisialisasi objective function = 0 dan nilai cubenya 0 semua
         this.value = 0;
         this.cubeState = Array.from({length:5},()=>Array.from({length:5},()=>Array(5).fill(0)));
+        this.sumConstraint = this.getSumConstraint(5);
     }
 
     private getSumConstraint(n:number):number{
@@ -43,4 +48,35 @@ export class MagicCubeClass {
         }
         return initState;
     }
+
+    public getRandomSuccessor(state:number[][][]): number[][][]{ // method untuk mencari state tetangga random
+
+        const newState = state.map(layer => layer.map(row => [...row]));
+        //pilih posisi pertama acak
+        const p1 ={
+            x: Math.floor(Math.random() * 5),
+            y: Math.floor(Math.random() * 5),
+            z: Math.floor(Math.random() * 5)
+        };
+        //pilih posisi kedua acak
+        const p2 ={
+            x: Math.floor(Math.random() * 5),
+            y: Math.floor(Math.random() * 5),
+            z: Math.floor(Math.random() * 5)
+        }
+        //kalo posisinya kebetulan sama, acak lagi p2 sampai beda posisi dengan p1
+        while (p1.x === p2.x && p1.y === p2.y && p1.z === p2.z){
+            p2.x = Math.floor(Math.random() * 5);
+            p2.y = Math.floor(Math.random() * 5);
+            p2.z = Math.floor(Math.random() * 5);
+        }
+        //tukar 2 angka di posisi yang udah dipilih
+        const temp = newState[p1.x][p1.y][p1.z];
+        newState[p1.x][p1.y][p1.z] = newState[p2.x][p2.y][p2.z];
+        newState[p2.x][p2.y][p2.z] = temp;
+
+        return newState;
+    }
+
+
 }

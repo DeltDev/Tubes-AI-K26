@@ -7,12 +7,24 @@ export class MagicCubeController {
 
     @Get('random-init-state')
     getInitialState(){
-        const initState = this.magicCubeService.getInitState();
+        this.magicCubeService.getInitState();
+        const initState = this.magicCubeService.getCurrentState();
         const stateValue = this.magicCubeService.getStateValue();
         return {
             status: HttpStatus.OK,
             value: stateValue,
             cubeState: initState,
         };
+    }
+    @Get('random-successor')
+    getRandomSuccessor(){
+        this.magicCubeService.getRandomSuccessor();
+        const currentState = this.magicCubeService.getCurrentState();
+        const stateValue = this.magicCubeService.getStateValue();
+        return {
+            status: HttpStatus.OK,
+            value: stateValue,
+            cubeState: currentState,
+        }
     }
 }

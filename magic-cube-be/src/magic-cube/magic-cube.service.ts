@@ -8,11 +8,19 @@ export class MagicCubeService {
         this.magicCube = new MagicCubeClass();
     }
 
-    getInitState() : MagicCubeClass {
+    getInitState() : void {
         this.magicCube.setCurrentState(this.magicCube.getRandomInitState());
-        return this.magicCube;
     }
     getStateValue() : number {
         return this.magicCube.getCurrentValue();
+    }
+    getRandomSuccessor() : void {
+        this.magicCube.setCurrentState(this.magicCube.getRandomSuccessor(this.magicCube.getCurrentState()));
+    }
+    getCurrentState() : number[][][] {
+        return this.magicCube.getCurrentState();
+    }
+    getSumConstraintVal(): number {
+        return this.magicCube.getSumConstraintVal();
     }
 }
