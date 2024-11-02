@@ -278,4 +278,11 @@ export class MagicCubeClass {
 
         return bestState;
     }
+
+    public clone(): MagicCubeClass { // Fungsi untuk membuat duplikasi dari magic cube
+        const newCube = new MagicCubeClass();
+        newCube.setCurrentState(this.cubeState.map(layer => layer.map(row => [...row]))); 
+        newCube.setCurrentValue(this.value);
+        return newCube;
+    }
 }
