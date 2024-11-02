@@ -62,9 +62,25 @@ export class MagicCubeController {
             results: results
         }
     }
+    @Get('hill-climbing-stochastic')
+    hcStochastic(){
+        const results = this.magicCubeService.hcStochastic();
+        return{
+            status: HttpStatus.OK,
+            results: results
+        }
+    }
     @Get('simulated-annealing')
     simulatedAnnealing(){
         const results = this.magicCubeService.simulatedAnnealing();
+        return{
+            status: HttpStatus.OK,
+            results: results
+        }
+    }
+    @Get('genetic-algortihm')
+    geneticAlgortihm(){
+        const results = this.magicCubeService.geneticAlgortihm();
         return{
             status: HttpStatus.OK,
             results: results

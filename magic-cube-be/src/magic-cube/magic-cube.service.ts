@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
-import {LocalSearch} from "../local-search/local-search";
+import {hcSteepestAscent} from "../local-search/hc-steepest-ascent";
+import {hcStochastic} from "../local-search/hc-stochastic";
+import {hcRandomRestart} from "../local-search/hc-random-restart";
+import {hcSidewaysMove} from "../local-search/hc-sideways-move";
+import {simulatedAnnealing} from "../local-search/simulated-annealing";
+import {geneticAlgorithm} from "../local-search/genetic-algorithm";
 
 @Injectable()
 export class MagicCubeService {
@@ -8,7 +13,6 @@ export class MagicCubeService {
 
     constructor() {
         this.magicCube = new MagicCubeClass();
-
     }
     //service ini hanya untuk testing
     // getInitState() : void {
@@ -34,18 +38,21 @@ export class MagicCubeService {
     // }
 
     hcSteepestAscent(): Array<MagicCubeClass> {
-        return LocalSearch.hcSteepestAscent();
+        return hcSteepestAscent.search();
     }
     hcSidewaysMove(): Array<MagicCubeClass> {
-        return LocalSearch.hcSidewaysMove();
+        return hcSidewaysMove.search();
     }
     hcRandomRestart(): Array<MagicCubeClass> {
-        return LocalSearch.hcRandomRestart();
+        return hcRandomRestart.search();
     }
     hcStochastic(): Array<MagicCubeClass> {
-        return LocalSearch.hcStochastic();
+        return hcStochastic.search();
     }
     simulatedAnnealing(): Array<MagicCubeClass> {
-        return LocalSearch.simulatedAnnealing();
+        return simulatedAnnealing.search();
+    }
+    geneticAlgortihm(): Array<MagicCubeClass> {
+        return geneticAlgorithm.search();
     }
 }
