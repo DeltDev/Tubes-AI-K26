@@ -45,15 +45,19 @@ export class MagicCubeService {
         return hcSidewaysMove.search(this.magicCube, sidewaysMoveMax);
     }
     hcRandomRestart(): Array<MagicCubeClass> {
-        return hcRandomRestart.search();
+        return hcRandomRestart.search(this.magicCube);
     }
     hcStochastic(): Array<MagicCubeClass> {
-        return hcStochastic.search();
+        return hcStochastic.search(this.magicCube);
     }
-    simulatedAnnealing(): Array<MagicCubeClass> {
-        return simulatedAnnealing.search();
+    simulatedAnnealing(): {
+        cubeStates: Array<MagicCubeClass>,
+        tValues: Array<number>,
+        probabilities: Array<number>
+    } {
+        return simulatedAnnealing.search(this.magicCube);
     }
     geneticAlgortihm(): Array<MagicCubeClass> {
-        return geneticAlgorithm.search();
+        return geneticAlgorithm.search(this.magicCube);
     }
 }

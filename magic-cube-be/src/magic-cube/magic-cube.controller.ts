@@ -51,7 +51,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcSidewaysMove(sidewaysMoveMax);
         return {
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         };
     }
     @Get('hill-climbing-random-restart')
@@ -59,7 +61,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcRandomRestart();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
     @Get('hill-climbing-stochastic')
@@ -67,7 +71,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.hcStochastic();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
     @Get('simulated-annealing')
@@ -75,7 +81,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.simulatedAnnealing();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: results.tValues,
+            probabilities: results.probabilities,
+            cubeStates: results.cubeStates
         }
     }
     @Get('genetic-algortihm')
@@ -83,7 +91,9 @@ export class MagicCubeController {
         const results = this.magicCubeService.geneticAlgortihm();
         return{
             status: HttpStatus.OK,
-            results: results
+            tValues: null,
+            probabilities: null,
+            cubeStates: results
         }
     }
 }
