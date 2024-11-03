@@ -4,8 +4,9 @@ import {Genome} from "../genome/genome";
 export class geneticAlgorithm {
     public static search(magicCube : MagicCubeClass): Array<MagicCubeClass> {
         const genomeAmt = 50; //banyak genome
-        const mutationProb = 0.01; //peluang mutasi
-        const maxIteration = 10000;
+        const mutationProb = 0.8; //peluang mutasi
+        const maxIteration = 1000;
+        const results : Array<MagicCubeClass> = [];
         let it = 1;
         //1. isi daftar genome dengan genome acak
         const genomeList : Array<Genome> = Array.from({length: genomeAmt}, () => {
@@ -15,22 +16,22 @@ export class geneticAlgorithm {
 
         //Ulangi sampai solusinya ketemu
         while(true){
-            const fitnessVals = genomeList.map(
-                genome => {
-                    const cube = genome.genomeToCube(genome.getGenomeStrand());
-                    return magicCube.objectiveFunction(cube);
-                }
-            )
+            const fitnessVals = genomeList.map((genome, index) => {
+                const cube = genome.genomeToCube(genome.getGenomeStrand());
+                const fitness = magicCube.objectiveFunction(cube);
+                return fitness;
+            });
 
             const fitnessMax = Math.max(...fitnessVals);
-
+            const bestGenomeIdx = fitnessVals.indexOf(fitnessMax);
+            const bestGenome = genomeList[bestGenomeIdx];
+            const bestCube = new MagicCubeClass();
+            bestCube.setCurrentState(bestGenome.genomeToCube(bestGenome.getGenomeStrand()));
+            bestCube.setCurrentValue(magicCube.objectiveFunction(bestCube.getCurrentState()));
+            results.push(bestCube);
             if(fitnessMax === 109 ||it>=maxIteration){
-                const solIdx = fitnessVals.indexOf(fitnessMax);
-                const solGenome = genomeList[solIdx];
-                const solCube = new MagicCubeClass();
-                solCube.setCurrentState(solGenome.genomeToCube(solGenome.getGenomeStrand()));
-                solCube.setCurrentValue(solCube.objectiveFunction(solCube.getCurrentState()));
-                return [solCube];
+
+                return results;
             }
 
             const chosenGenomes = this.selectGenomes(genomeList, fitnessVals);
