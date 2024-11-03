@@ -2,13 +2,12 @@ import { MagicCubeClass } from "../magic-cube-class/magic-cube-class";
 import { hcSteepestAscent } from "./hc-steepest-ascent";
 
 export class hcRandomRestart {
-    public static search(magicCube : MagicCubeClass): Array<MagicCubeClass> {
+    public static search(magicCube : MagicCubeClass, maxRestarts: number): Array<MagicCubeClass> {
         //Variabel untuk menyimpan steps dan value local optima terbaik dari semua restart
         let bestLocalOptimaStates: Array<MagicCubeClass> = [];
         let bestLocalOptimaValue = -1;
 
-        //Sementara, jumlah restart adalah 10
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < maxRestarts; i++) {
             // Lakukan steepest ascent
             const currentLocalOptimaSteps = hcSteepestAscent.search(magicCube);
             const currentLocalOptimaCube = currentLocalOptimaSteps[currentLocalOptimaSteps.length - 1];

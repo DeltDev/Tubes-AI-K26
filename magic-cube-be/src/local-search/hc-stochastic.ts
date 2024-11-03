@@ -9,7 +9,7 @@ export class hcStochastic {
         //Masukkan current cube ke array result sebagai state pertama
         result.push(currentCube.clone());
 
-        //Untuk sekarang, dilakukan 100 iterasi
+        //Untuk sekarang, dilakukan 500 iterasi
         for (let i = 0; i < 500; i++) {
             const randomSuccessorState = currentCube.getBestSuccessor(currentCube.getCurrentState());
             const randomSuccessorValue = currentCube.objectiveFunction(randomSuccessorState);
