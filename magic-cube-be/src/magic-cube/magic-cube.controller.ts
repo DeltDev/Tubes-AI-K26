@@ -58,9 +58,9 @@ export class MagicCubeController {
             cubeStates: results
         };
     }
-    @Get('hill-climbing-random-restart')
-    hcRandomRestart(){
-        const results = this.magicCubeService.hcRandomRestart();
+    @Get('hill-climbing-random-restart/:maxRestarts')
+    hcRandomRestart(@Param('maxRestarts') maxRestarts: number){
+        const results = this.magicCubeService.hcRandomRestart(maxRestarts);
         return{
             status: HttpStatus.OK,
             tValues: null,

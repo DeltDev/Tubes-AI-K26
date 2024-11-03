@@ -44,8 +44,8 @@ export class MagicCubeService {
     hcSidewaysMove(sidewaysMoveMax: number): Array<MagicCubeClass> {
         return hcSidewaysMove.search(this.magicCube, sidewaysMoveMax);
     }
-    hcRandomRestart(): Array<MagicCubeClass> {
-        return hcRandomRestart.search(this.magicCube);
+    hcRandomRestart(maxRestarts: number): Array<MagicCubeClass> {
+        return hcRandomRestart.search(this.magicCube, maxRestarts);
     }
     hcStochastic(): Array<MagicCubeClass> {
         return hcStochastic.search(this.magicCube);
