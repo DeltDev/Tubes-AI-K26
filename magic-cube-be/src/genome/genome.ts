@@ -36,7 +36,6 @@ export class Genome {
 
     public genomeToCube(genomeStrand:number[]):number[][][]{ //konversi dari genome ke cube
         const cubeState: number[][][] = Array.from({length:5}, ()=>Array.from({length:5}, ()=>Array(5).fill(0)));
-
         let idx =  0;
         for(let x = 0; x<5; x++){
             for(let y = 0; y<5; y++){

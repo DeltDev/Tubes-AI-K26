@@ -88,8 +88,8 @@ export class MagicCubeController {
             cubeStates: results.cubeStates
         }
     }
-    @Get('genetic-algortihm')
-    geneticAlgortihm(){
+    @Get('genetic-algorithm')
+    geneticAlgorithm(){
         const results = this.magicCubeService.geneticAlgortihm();
         return{
             status: HttpStatus.OK,
