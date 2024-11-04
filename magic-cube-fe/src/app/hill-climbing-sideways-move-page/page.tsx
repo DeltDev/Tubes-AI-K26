@@ -2,17 +2,13 @@
 
 import { useState } from 'react';
 
-export default function HillClimbingSteepestAscentPage() {
+export default function HillClimbingSidewaysMovePage() {
   // Yang menjadi parameter
   const [sidewaysMoveMax, setSidewaysMoveMax] = useState<number>(0);
 
   // Yang perlu ditampilin
   const [cubeState, setCubeState] = useState(null); // Raw data
-  const [initialState, setInitialState] = useState(null);
-  const [finalState, setFinalState] = useState(null);
-  const [finalObjectiveValue, setFinalObjectiveValue] = useState<number | null>(null);
   const [duration, setDuration] = useState<number | null>(null);
-  const [iterationAmount, setIterationAmount] = useState(null);
 
   const handleStartExperiment = async () => {
     const url = `http://localhost:8000/magic-cube/hill-climbing-sideways-move/${sidewaysMoveMax}`;
@@ -26,11 +22,7 @@ export default function HillClimbingSteepestAscentPage() {
       const endTime = Date.now(); 
       
       setCubeState(data.cubeStates);
-      setInitialState(data.cubeStates[0].cubeState);
-      setFinalState(data.cubeStates[data.cubeStates.length - 1].cubeState);
-      setFinalObjectiveValue(data.cubeStates[data.cubeStates.length - 1].value);
       setDuration(endTime - startTime); 
-      setIterationAmount(data.cubeStates.length);
 
     } catch (error) {
       console.error(`Error running hill-climbing sideways move:`, error);
@@ -60,18 +52,18 @@ export default function HillClimbingSteepestAscentPage() {
         <>
           <div>
             <h2>Experiment Results:</h2>
-            <p>Initial State: {JSON.stringify(initialState)}</p>
-            <p>Final State: {JSON.stringify(finalState)}</p>
-            <p>Final Objective Value: {finalObjectiveValue}</p>
+            <p>Initial State: {JSON.stringify(cubeState[0].cubeState)}</p>
+            <p>Final State: {JSON.stringify(cubeState[cubeState.length - 1].cubeState)}</p>
+            <p>Final Objective Value: {cubeState[cubeState.length - 1].value}</p>
             <p>Duration: {duration} ms</p>
-            <p>Iteration Amount: {iterationAmount}</p>
+            <p>Iteration Amount: {cubeState.length}</p>
           </div>
 
           <br />
 
           <div>
             <h2>Step-by-step detail</h2>
-            <p>{JSON.stringify(cubeState)}</p>
+            <pre>{JSON.stringify(cubeState, null, 2)}</pre>
           </div>
         </>
       )}

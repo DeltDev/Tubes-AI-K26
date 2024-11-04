@@ -2,6 +2,9 @@ import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
 
 export class hcSteepestAscent {
     public static search(magicCube : MagicCubeClass): Array<MagicCubeClass>{
+        // Shuffle dulu
+        magicCube.setCurrentState(magicCube.getRandomInitState());
+        
         // Instantiate resultnya, yaitu state-state yang dikunjungi
         const result : Array<MagicCubeClass> = [];
 

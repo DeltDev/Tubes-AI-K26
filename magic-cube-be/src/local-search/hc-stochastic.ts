@@ -2,6 +2,9 @@ import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
 
 export class hcStochastic {
     public static search(magicCube : MagicCubeClass): Array<MagicCubeClass> {
+        // Shuffle dulu
+        magicCube.setCurrentState(magicCube.getRandomInitState());
+
         //Inisialisasi current cube dan array result
         const currentCube : MagicCubeClass = magicCube.clone();
         const result : Array<MagicCubeClass> = [];
@@ -11,7 +14,7 @@ export class hcStochastic {
 
         //Untuk sekarang, dilakukan 500 iterasi
         for (let i = 0; i < 500; i++) {
-            const randomSuccessorState = currentCube.getBestSuccessor(currentCube.getCurrentState());
+            const randomSuccessorState = currentCube.getRandomSuccessor(currentCube.getCurrentState());
             const randomSuccessorValue = currentCube.objectiveFunction(randomSuccessorState);
 
             //Bandingkan random successor dengan current cube

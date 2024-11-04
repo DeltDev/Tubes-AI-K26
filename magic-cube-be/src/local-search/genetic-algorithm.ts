@@ -2,10 +2,10 @@ import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
 import {Genome} from "../genome/genome";
 
 export class geneticAlgorithm {
-    public static search(magicCube : MagicCubeClass): Array<MagicCubeClass> {
-        const genomeAmt = 50; //banyak genome
+    public static search(magicCube : MagicCubeClass, genomeAmt : number, maxIteration : number): Array<MagicCubeClass> {
+        // genomeAmt = 50; //banyak genome
         const mutationProb = 0.8; //peluang mutasi
-        const maxIteration = 1000;
+        // maxIteration = 1000;
         const results : Array<MagicCubeClass> = [];
         let it = 1;
         //1. isi daftar genome dengan genome acak
