@@ -2,6 +2,7 @@
 
 import { MagicCubeClass } from '@/components/cube-state/MagicCube';
 import CubeVisualizationWithoutSpaceDiags from '@/components/cube-visualization/CubeVisualizationWithoutSpaceDiags';
+import ObjectiveValueGraph from '@/components/objective-value-graph/ObjectiveValueGraph';
 import { useState } from 'react';
 
 export default function SimulatedAnnealingPage() {
@@ -49,7 +50,14 @@ export default function SimulatedAnnealingPage() {
             />
             <p>Final Objective Value: {cubeState[cubeState.length - 1].value}</p>
             <p>Duration: {duration} ms</p>
-            <p>Iteration Amount: {cubeState.length}</p>
+            <p>Iteration Amount: {cubeState.length - 1}</p>
+          </div>
+
+          <br />
+
+          <div>
+            <h2>Objective Value per Iteration</h2>
+            <ObjectiveValueGraph cubeState={cubeState} />
           </div>
 
           <br />

@@ -2,6 +2,7 @@
 
 import { MagicCubeClass } from '@/components/cube-state/MagicCube';
 import CubeVisualizationWithoutSpaceDiags from '@/components/cube-visualization/CubeVisualizationWithoutSpaceDiags';
+import ObjectiveValueGraph from '@/components/objective-value-graph/ObjectiveValueGraph';
 import { useState } from 'react';
 
 export default function HillClimbingRandomRestartPage() {
@@ -59,7 +60,7 @@ export default function HillClimbingRandomRestartPage() {
             {cubeState.map((restart : Array<MagicCubeClass>, index) => (
               <div key={index}>
                 <h3>Restart {index + 1}</h3>
-                <p>Iterations: {restart.length}</p>
+                <p>Iterations: {restart.length - 1}</p>
                 <p>Initial State:</p>
                 <CubeVisualizationWithoutSpaceDiags 
                   cube={restart[0].cubeState}
@@ -69,7 +70,13 @@ export default function HillClimbingRandomRestartPage() {
                   cube={restart[restart.length - 1].cubeState}
                 />
                 <p>Final Objective Value: {restart[restart.length - 1].value}</p>
+                
                 <br />
+
+                <div>
+                  <h2>Objective Value per Iteration</h2>
+                  <ObjectiveValueGraph cubeState={restart} />
+                </div>
               </div>
             ))}
           </div>
