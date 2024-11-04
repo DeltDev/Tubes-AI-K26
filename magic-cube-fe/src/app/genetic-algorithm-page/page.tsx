@@ -1,10 +1,12 @@
 "use client";
 
+import { MagicCubeClass } from '@/components/cube-state/MagicCube';
+import CubeVisualizationWithoutSpaceDiags from '@/components/cube-visualization/CubeVisualizationWithoutSpaceDiags';
 import { useState } from 'react';
 
 export default function GeneticAlgorithmPage() {
   // State variables
-  const [cubeState, setCubeState] = useState(null); // Raw data
+  const [cubeState, setCubeState] = useState<Array<MagicCubeClass> | null>(null); // Raw data
   const [duration, setDuration] = useState<number | null>(null);
   const [genomeAmt, setGenomeAmt] = useState<number>(100); // Default population amount
   const [maxIteration, setMaxIteration] = useState<number>(1000); // Default max iteration
@@ -61,8 +63,14 @@ export default function GeneticAlgorithmPage() {
         <>
           <div>
             <h2>Experiment Results:</h2>
-            <p>Initial State: {JSON.stringify(cubeState[0].cubeState)}</p>
-            <p>Final State: {JSON.stringify(cubeState[cubeState.length - 1].cubeState)}</p>
+            <p>Initial State:</p>
+            <CubeVisualizationWithoutSpaceDiags 
+              cube={cubeState[0].cubeState}
+            />
+            <p>Final State:</p>
+            <CubeVisualizationWithoutSpaceDiags 
+              cube={cubeState[cubeState.length - 1].cubeState}
+            />
             <p>Final Objective Value: {cubeState[cubeState.length - 1].value}</p>
             <p>Duration: {duration} ms</p>
             <p>Iteration Amount: {cubeState.length}</p>

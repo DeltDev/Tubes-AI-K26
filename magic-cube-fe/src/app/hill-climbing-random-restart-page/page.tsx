@@ -1,5 +1,7 @@
 "use client";
 
+import { MagicCubeClass } from '@/components/cube-state/MagicCube';
+import CubeVisualizationWithoutSpaceDiags from '@/components/cube-visualization/CubeVisualizationWithoutSpaceDiags';
 import { useState } from 'react';
 
 export default function HillClimbingRandomRestartPage() {
@@ -7,7 +9,7 @@ export default function HillClimbingRandomRestartPage() {
   const [maximumRestart, setMaximumRestart] = useState<number>(0);
 
   // Yang perlu ditampilin
-  const [cubeState, setCubeState] = useState(null); // Raw data
+  const [cubeState, setCubeState] = useState<Array<Array<MagicCubeClass>> | null>(null); // Raw data
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleStartExperiment = async () => {
@@ -54,12 +56,18 @@ export default function HillClimbingRandomRestartPage() {
             <p>Duration: {duration} ms</p>
             <p>Total Restarts: {cubeState.length}</p>
 
-            {cubeState.map((restart, index) => (
+            {cubeState.map((restart : Array<MagicCubeClass>, index) => (
               <div key={index}>
                 <h3>Restart {index + 1}</h3>
                 <p>Iterations: {restart.length}</p>
-                <p>Initial State: {JSON.stringify(restart[0].cubeState)}</p>
-                <p>Final State: {JSON.stringify(restart[restart.length - 1].cubeState)}</p>
+                <p>Initial State:</p>
+                <CubeVisualizationWithoutSpaceDiags 
+                  cube={restart[0].cubeState}
+                />
+                <p>Final State:</p>
+                <CubeVisualizationWithoutSpaceDiags 
+                  cube={restart[restart.length - 1].cubeState}
+                />
                 <p>Final Objective Value: {restart[restart.length - 1].value}</p>
                 <br />
               </div>

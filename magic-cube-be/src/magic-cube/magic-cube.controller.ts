@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus, Param} from '@nestjs/common';
+import {Controller, Get, HttpStatus, Param, Query} from '@nestjs/common';
 import {MagicCubeService} from "./magic-cube.service";
 
 @Controller('magic-cube')
