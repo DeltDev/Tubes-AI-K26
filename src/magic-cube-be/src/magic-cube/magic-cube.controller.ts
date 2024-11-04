@@ -85,7 +85,8 @@ export class MagicCubeController {
             status: HttpStatus.OK,
             tValues: results.tValues,
             probabilities: results.probabilities,
-            cubeStates: results.cubeStates
+            cubeStates: results.cubeStates,
+            stuckInLocalOptima: results.stuckInLocalOptima,
         }
     }
     @Get('genetic-algorithm')

@@ -19,7 +19,8 @@ export class simulatedAnnealing{
     public static search(magicCube : MagicCubeClass): {
         cubeStates: Array<MagicCubeClass>,
         tValues: Array<number>,
-        probabilities: Array<number>
+        probabilities: Array<number>,
+        stuckInLocalOptima: number
     } {
         //IMPLEMENTASI ALGORITMA SIMULATED ANNEALING DI SINI
 
@@ -30,6 +31,7 @@ export class simulatedAnnealing{
         // variables or something
         const currentMagicCube : MagicCubeClass = magicCube.clone();
         const startTime = performance.now(); // start time in ms
+        let stuckInLocalOptima: number = 0;
         let time = 0;
         let temperature = initTemperature;
         const results : Array<MagicCubeClass> = [];
@@ -51,6 +53,7 @@ export class simulatedAnnealing{
                 currentMagicCube.setCurrentValue(randomSuccessorValue);
             } else {
                 // valuenya lebih kecil, jadi di random
+                stuckInLocalOptima = stuckInLocalOptima + 1;
                 const randomNumber = Math.random();
                 if (randomNumber < probability){
                     currentMagicCube.setCurrentState(randomSuccessorState);
@@ -67,7 +70,8 @@ export class simulatedAnnealing{
         return {
             cubeStates: results,
             tValues: tValuesArray,
-            probabilities: probabilitiesArray
+            probabilities: probabilitiesArray,
+            stuckInLocalOptima: stuckInLocalOptima,
         };
     }
 }

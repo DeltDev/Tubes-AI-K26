@@ -10,6 +10,7 @@ export default function SimulatedAnnealingPage() {
   // Yang perlu ditampilin
   const [cubeState, setCubeState] = useState<Array<MagicCubeClass> | null>(null); // Raw data
   const [probabilities, setProbabilities] = useState<Array<number>>([]); 
+  const [stuckInLocalOptima, setStuckInLocalOptima] = useState<number>(0); 
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleStartExperiment = async () => {
@@ -24,6 +25,7 @@ export default function SimulatedAnnealingPage() {
       
       setCubeState(data.cubeStates);
       setProbabilities(data.probabilities);
+      setStuckInLocalOptima(data.stuckInLocalOptima);
       setDuration(endTime - startTime); 
 
     } catch (error) {
@@ -54,6 +56,7 @@ export default function SimulatedAnnealingPage() {
             <p>Final Objective Value: {cubeState[cubeState.length - 1].value}</p>
             <p>Duration: {duration} ms</p>
             <p>Iteration Amount: {cubeState.length - 1}</p>
+            <p>Stuck in local optima frequency: {stuckInLocalOptima}</p>
           </div>
 
           <br />

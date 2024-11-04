@@ -53,7 +53,8 @@ export class MagicCubeService {
     simulatedAnnealing(): {
         cubeStates: Array<MagicCubeClass>,
         tValues: Array<number>,
-        probabilities: Array<number>
+        probabilities: Array<number>,
+        stuckInLocalOptima: number,
     } {
         return simulatedAnnealing.search(this.magicCube);
     }
