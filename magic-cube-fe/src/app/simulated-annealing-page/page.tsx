@@ -3,11 +3,13 @@
 import { MagicCubeClass } from '@/components/cube-state/MagicCube';
 import CubeVisualizationWithoutSpaceDiags from '@/components/cube-visualization/CubeVisualizationWithoutSpaceDiags';
 import ObjectiveValueGraph from '@/components/objective-value-graph/ObjectiveValueGraph';
+import ProbabilityGraph from '@/components/probability-graph/ProbabilityGraph';
 import { useState } from 'react';
 
 export default function SimulatedAnnealingPage() {
   // Yang perlu ditampilin
   const [cubeState, setCubeState] = useState<Array<MagicCubeClass> | null>(null); // Raw data
+  const [probabilities, setProbabilities] = useState<Array<number>>([]); 
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleStartExperiment = async () => {
@@ -21,6 +23,7 @@ export default function SimulatedAnnealingPage() {
       const endTime = Date.now();
       
       setCubeState(data.cubeStates);
+      setProbabilities(data.probabilities);
       setDuration(endTime - startTime); 
 
     } catch (error) {
@@ -58,6 +61,13 @@ export default function SimulatedAnnealingPage() {
           <div>
             <h2>Objective Value per Iteration</h2>
             <ObjectiveValueGraph cubeState={cubeState} />
+          </div>
+
+          <br />
+
+          <div>
+            <h2>Probability Value per Iteration</h2>
+            <ProbabilityGraph probabilities={probabilities} />
           </div>
 
           <br />
