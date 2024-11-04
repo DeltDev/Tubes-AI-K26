@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
 import {Genome} from "../genome/genome";
 
