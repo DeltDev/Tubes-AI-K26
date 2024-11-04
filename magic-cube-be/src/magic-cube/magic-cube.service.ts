@@ -44,7 +44,7 @@ export class MagicCubeService {
     hcSidewaysMove(sidewaysMoveMax: number): Array<MagicCubeClass> {
         return hcSidewaysMove.search(this.magicCube, sidewaysMoveMax);
     }
-    hcRandomRestart(maxRestarts: number): Array<MagicCubeClass> {
+    hcRandomRestart(maxRestarts: number): Array<Array<MagicCubeClass>> {
         return hcRandomRestart.search(this.magicCube, maxRestarts);
     }
     hcStochastic(): Array<MagicCubeClass> {
@@ -57,7 +57,7 @@ export class MagicCubeService {
     } {
         return simulatedAnnealing.search(this.magicCube);
     }
-    geneticAlgortihm(): Array<MagicCubeClass> {
-        return geneticAlgorithm.search(this.magicCube);
+    geneticAlgortihm(genomeAmt : number, maxIteration : number): Array<MagicCubeClass> {
+        return geneticAlgorithm.search(this.magicCube, genomeAmt, maxIteration);
     }
 }

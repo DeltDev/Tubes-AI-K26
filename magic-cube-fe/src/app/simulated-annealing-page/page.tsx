@@ -2,33 +2,32 @@
 
 import { useState } from 'react';
 
-export default function HillClimbingSteepestAscentPage() {
+export default function SimulatedAnnealingPage() {
   // Yang perlu ditampilin
   const [cubeState, setCubeState] = useState(null); // Raw data
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleStartExperiment = async () => {
-    const url = 'http://localhost:8000/magic-cube/hill-climbing-steepest-ascent';
-
-    const startTime = Date.now(); 
+    const url = `http://localhost:8000/magic-cube/simulated-annealing`;
+    const startTime = Date.now();
 
     try {
       const response = await fetch(url);
       const data = await response.json();
 
-      const endTime = Date.now(); 
+      const endTime = Date.now();
       
       setCubeState(data.cubeStates);
       setDuration(endTime - startTime); 
 
     } catch (error) {
-      console.error(`Error running hill-climbing steepest ascent:`, error);
+      console.error(`Error running simulated annealing:`, error);
     }
   };
 
   return (
     <div>
-      <h1>Hill-Climbing Steepest Ascent</h1>
+      <h1>Simulated Annealing</h1>
 
       <button onClick={handleStartExperiment}>
         Start Experiment
@@ -53,7 +52,6 @@ export default function HillClimbingSteepestAscentPage() {
           </div>
         </>
       )}
-
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function HillClimbingSteepestAscentPage() {
   const [duration, setDuration] = useState<number | null>(null);
 
   const handleStartExperiment = async () => {
-    const url = 'http://localhost:8000/magic-cube/hill-climbing-steepest-ascent';
+    const url = 'http://localhost:8000/magic-cube/hill-climbing-stochastic';
 
     const startTime = Date.now(); 
 
@@ -22,13 +22,13 @@ export default function HillClimbingSteepestAscentPage() {
       setDuration(endTime - startTime); 
 
     } catch (error) {
-      console.error(`Error running hill-climbing steepest ascent:`, error);
+      console.error(`Error running hill-climbing stochastic:`, error);
     }
   };
 
   return (
     <div>
-      <h1>Hill-Climbing Steepest Ascent</h1>
+      <h1>Hill-Climbing Stochastic</h1>
 
       <button onClick={handleStartExperiment}>
         Start Experiment

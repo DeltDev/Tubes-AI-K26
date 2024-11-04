@@ -2,6 +2,9 @@ import {MagicCubeClass} from "../magic-cube-class/magic-cube-class";
 
 export class hcStochastic {
     public static search(magicCube : MagicCubeClass): Array<MagicCubeClass> {
+        // Shuffle dulu
+        magicCube.setCurrentState(magicCube.getRandomInitState());
+
         //Inisialisasi current cube dan array result
         const currentCube : MagicCubeClass = magicCube.clone();
         const result : Array<MagicCubeClass> = [];

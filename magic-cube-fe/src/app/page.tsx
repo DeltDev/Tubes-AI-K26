@@ -6,8 +6,12 @@ export default function Home() {
   const router = useRouter();
 
   const algorithms = [
-    'Hill Climbing Steepest Ascent',
-    'Hill Climbing Sideways Move',
+    'Hill-Climbing Steepest Ascent',
+    'Hill-Climbing Sideways Move',
+    'Hill-Climbing Random Restart',
+    'Hill-Climbing Stochastic',
+    'Simulated Annealing',
+    'Genetic Algorithm'
   ];
 
   return (

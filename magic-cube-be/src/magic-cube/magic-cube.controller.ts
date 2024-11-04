@@ -89,13 +89,16 @@ export class MagicCubeController {
         }
     }
     @Get('genetic-algorithm')
-    geneticAlgorithm(){
-        const results = this.magicCubeService.geneticAlgortihm();
-        return{
+    geneticAlgorithm(@Query('genomeAmt') genomeAmt: number, @Query('maxIteration') maxIteration: number) {
+        const parsedGenomeAmt = parseInt(genomeAmt as any) || 100; 
+        const parsedMaxIteration = parseInt(maxIteration as any) || 1000;
+        const results = this.magicCubeService.geneticAlgortihm(parsedGenomeAmt, parsedMaxIteration);
+        return {
             status: HttpStatus.OK,
             tValues: null,
             probabilities: null,
             cubeStates: results
-        }
+        };
     }
+
 }

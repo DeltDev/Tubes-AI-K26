@@ -1,11 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { MagicCubeClass } from "../magic-cube-class/magic-cube-class";
 import { hcSteepestAscent } from "./hc-steepest-ascent";
 
 export class hcRandomRestart {
-    public static search(magicCube : MagicCubeClass, maxRestarts: number): Array<MagicCubeClass> {
-        //Variabel untuk menyimpan steps dan value local optima terbaik dari semua restart
-        let bestLocalOptimaStates: Array<MagicCubeClass> = [];
-        let bestLocalOptimaValue = -1;
+    public static search(magicCube : MagicCubeClass, maxRestarts: number): Array<Array<MagicCubeClass>> {
+        //Variabel untuk menyimpan semua steps dan semua restart
+        const allResult : Array<Array<MagicCubeClass>> = [];
 
         for (let i = 0; i < maxRestarts; i++) {
             // Lakukan steepest ascent
@@ -13,17 +13,15 @@ export class hcRandomRestart {
             const currentLocalOptimaCube = currentLocalOptimaSteps[currentLocalOptimaSteps.length - 1];
             const currentLocalOptimaValue = currentLocalOptimaCube.objectiveFunction(currentLocalOptimaCube.getCurrentState());
             
-            //Bandingkan hasil local optima sekarang dengan local optima terbaik sejauh ini
-            if (currentLocalOptimaValue > bestLocalOptimaValue) {
-                bestLocalOptimaStates = currentLocalOptimaSteps;
-                bestLocalOptimaValue = currentLocalOptimaValue;
-            }
+            // Simpan ke array
+            allResult.push(currentLocalOptimaSteps);
 
-            //Break jika global optima tercapai
-            if (currentLocalOptimaValue === 109) {
+            // Kalau sudah global optima, stop
+            if (currentLocalOptimaValue == currentLocalOptimaCube.getSumConstraintVal()) {
                 break;
             }
+            
         }
-        return bestLocalOptimaStates;
+        return allResult;
     }
 }
