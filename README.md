@@ -37,7 +37,7 @@ cd magic-cube-fe
 ```
 npm i
 ```
-7. Nyalakan frontend (backend ada di localhost:3000)
+7. Nyalakan frontend (frontend ada di localhost:3000)
 ```
 npm run dev
 ```
