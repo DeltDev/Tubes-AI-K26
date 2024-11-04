@@ -28,9 +28,9 @@ npm i
 ```
 npm run start:dev
 ```
-5. Sekarang mari kita nyalakan frontend, masuk ke folder frontend
+5. Sekarang mari kita nyalakan frontend, buka terminal baru, masuk ke folder frontend
 ```
-cd ..
+cd src
 cd magic-cube-fe
 ```
 6. Install dulu modulesnya
