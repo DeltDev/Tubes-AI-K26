@@ -11,7 +11,7 @@ export class hcStochastic {
 
         //Untuk sekarang, dilakukan 500 iterasi
         for (let i = 0; i < 500; i++) {
-            const randomSuccessorState = currentCube.getBestSuccessor(currentCube.getCurrentState());
+            const randomSuccessorState = currentCube.getRandomSuccessor(currentCube.getCurrentState());
             const randomSuccessorValue = currentCube.objectiveFunction(randomSuccessorState);
 
             //Bandingkan random successor dengan current cube
